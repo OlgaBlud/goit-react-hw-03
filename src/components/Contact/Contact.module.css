@@ -1,0 +1,27 @@
+.contactItem {
+  width: 300px;
+  padding: 8px 15px;
+  background-color: azure;
+  border: 1px solid rgb(105, 105, 210);
+  border-radius: 9px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.textWrap {
+}
+.dataWrap {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.icon {
+}
+.contactName {
+}
+.contactPhone {
+}
+.deleteContactBtn {
+  background-color: rgb(83, 83, 208);
+  color: aliceblue;
+}
