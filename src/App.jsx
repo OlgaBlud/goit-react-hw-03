@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
@@ -11,12 +11,29 @@ function App() {
     { id: "id-3", name: "Eden Clements", number: "645-17-79" },
     { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
   ]);
+  const [searchValue, setSearchValue] = useState("");
+  const [filteredContacts, setFilteredContacts] = useState([]);
+  const handleSearchChange = (event) => {
+    setSearchValue(event.target.value);
+  };
+  useEffect(
+    () =>
+      setFilteredContacts(
+        contacts.filter((contact) => {
+          return contact.name.toLowerCase().includes(searchValue.toLowerCase());
+        })
+      ),
+    [searchValue, contacts]
+  );
+
   return (
     <div>
       <h1>Phonebook</h1>
       <ContactForm />
-      <SearchBox />
-      <ContactList contacts={contacts} />
+      <SearchBox handleSearchChange={handleSearchChange} />
+      <ContactList
+        contacts={filteredContacts.length > 0 ? filteredContacts : contacts}
+      />
     </div>
   );
 }
