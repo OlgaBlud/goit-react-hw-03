@@ -12,30 +12,40 @@ function App() {
     { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
   ]);
   const [searchValue, setSearchValue] = useState("");
-  const [filteredContacts, setFilteredContacts] = useState([]);
-  const handleSearchChange = (event) => {
-    setSearchValue(event.target.value);
-  };
-  useEffect(
-    () =>
-      setFilteredContacts(
-        contacts.filter((contact) => {
-          return contact.name.toLowerCase().includes(searchValue.toLowerCase());
-        })
-      ),
-    [searchValue, contacts]
-  );
 
   return (
     <div>
       <h1>Phonebook</h1>
       <ContactForm />
-      <SearchBox handleSearchChange={handleSearchChange} />
-      <ContactList
-        contacts={filteredContacts.length > 0 ? filteredContacts : contacts}
+      <SearchBox
+        searchValue={searchValue}
+        handleSearchChange={setSearchValue}
       />
+      <ContactList contacts={contacts} />
+      {/* // _________________________________________________variant 1 work good */}
+      {/* <SearchBox handleSearchChange={handleSearchChange} /> */}
+      {/* <ContactList
+        contacts={filteredContacts.length > 0 ? filteredContacts : contacts}
+      /> */}
     </div>
   );
 }
 
 export default App;
+// _________________________________________________variant 1 work good
+// const [filteredContacts, setFilteredContacts] = useState([]);
+// const handleSearchChange = (event) => {
+//   setSearchValue(event.target.value);
+// };
+// useEffect(
+//   () =>
+//     setFilteredContacts(
+//       contacts.filter((contact) => {
+//         return contact.name.toLowerCase().includes(searchValue.toLowerCase());
+//       })
+//     ),
+//   [searchValue, contacts]
+// );
+
+// const [filter, setFilter] = useState("");
+// <Filter value={filter} onFilter={setFilter} />;
