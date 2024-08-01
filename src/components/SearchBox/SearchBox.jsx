@@ -2,13 +2,13 @@ const SearchBox = ({ searchValue, handleSearchChange }) => {
   return (
     <div>
       <label htmlFor="search">
+        Find contacts by name
         <input
           type="text"
           name="search"
           value={searchValue}
           onChange={(e) => handleSearchChange(e.target.value)}
         />
-        Find contacts by name
       </label>
     </div>
   );

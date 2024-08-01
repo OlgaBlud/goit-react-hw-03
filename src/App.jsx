@@ -27,6 +27,7 @@ function App() {
       prevContactList.filter((contact) => contact.id !== contactId)
     );
   };
+  console.log(contacts);
   return (
     <div>
       <h1>Phonebook</h1>
