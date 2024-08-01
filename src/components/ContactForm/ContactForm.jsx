@@ -1,56 +1,58 @@
 import { nanoid } from "nanoid";
+import { Field, Form, Formik } from "formik";
+
 const ContactForm = ({ addContact }) => {
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    addContact({
-      id: nanoid(5),
-      name: event.target.name.value,
-      number: event.target.phone.value,
-    });
-    event.target.reset();
+  const handleFormSubmit = (values, actions) => {
+    values.id = nanoid(5);
+    addContact(values);
+    actions.resetForm();
   };
+
   return (
-    <form onSubmit={handleFormSubmit}>
-      <label htmlFor="name">
-        <input type="text" name="name" />
-        Name
-      </label>
-      <label htmlFor="phone">
-        <input type="tel" name="phone" />
-        Phone
-      </label>
-      <button type="submit">Add contact</button>
-    </form>
+    <Formik initialValues={{ name: "", phone: "" }} onSubmit={handleFormSubmit}>
+      <Form>
+        <label htmlFor="name">
+          <Field type="text" name="name" />
+          Name
+        </label>
+        <label htmlFor="phone">
+          <Field type="tel" name="phone" />
+          Phone
+        </label>
+        <button type="submit">Add contact</button>
+      </Form>
+    </Formik>
   );
 };
 
 export default ContactForm;
 
-// Крок 3 - Додавання контактів
+// /* // _________________________________________________variant without Formik */
 
-// На цьому етапі реалізуй додавання контакту до списку контактів через форму ContactForm.
-// Кожен контакт повинен бути об'єктом з властивостями name, number та id,
-// тобто таким самим, як в тестових даних, які зараз знаходяться у тебе в стані.
+// import { nanoid } from "nanoid";
+// const ContactForm = ({ addContact }) => {
+//   const handleFormSubmit = (event) => {
+//     event.preventDefault();
+//     addContact({
+//       id: nanoid(5),
+//       name: event.target.name.value,
+//       number: event.target.phone.value,
+//     });
+//     event.target.reset();
+//   };
+//   return (
+//     <form onSubmit={handleFormSubmit}>
+//       <label htmlFor="name">
+//         <input type="text" name="name" />
+//         Name
+//       </label>
+//       <label htmlFor="phone">
+//         <input type="tel" name="phone" />
+//         Phone
+//       </label>
+//       <button type="submit">Add contact</button>
+//     </form>
+//   );
+// };
 
-// Для генерації ідентифікаторів використовуй будь-який відповідний пакет, наприклад nanoid.
-// У майбутньому цим буде займатися база даних, а поки що додаємо ідентифікатор об'єкта самостійно,
-// наприклад, під час сабміту форми.
-
-// Форму обов'язково створи за допомогою бібліотеки Formik.
-
-// Додай валідацію полів форми бібліотекою Yup та виведи повідомлення про помилки:
-// поля повинні бути обов'язковими для заповнення
-// мінімальна кількість символів - 3
-// максимальна кількість символів - 50
-
-// Крок 4 - Видалення контактів
-
-// Розшир функціонал застосунку, дозволяючи користувачу видаляти раніше збережені контакти
-//  кліком по кнопці Delete в карточці контакта.
-
-// Крок 5 - Збереження контактів
-
-// Застосунок повинен зберігати масив контактів між оновленням сторінки в локальному сховищі. Використовуй ефекти.
-
-// Під час додавання та видалення контакту контакти зберігаються у локальне сховище.
-// Під час завантаження застосунку контакти, якщо такі є, зчитуються з локального сховища і записуються у стан.
+// export default ContactForm;
