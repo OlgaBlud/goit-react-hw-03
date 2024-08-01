@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
@@ -12,27 +12,25 @@ function App() {
     { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
   ]);
   const [searchValue, setSearchValue] = useState("");
-
+  const filteredContacts = contacts.filter((contact) => {
+    return contact.name.toLowerCase().includes(searchValue.toLowerCase());
+  });
   return (
     <div>
       <h1>Phonebook</h1>
+      <p>{searchValue}</p>
       <ContactForm />
       <SearchBox
         searchValue={searchValue}
         handleSearchChange={setSearchValue}
       />
-      <ContactList contacts={contacts} />
-      {/* // _________________________________________________variant 1 work good */}
-      {/* <SearchBox handleSearchChange={handleSearchChange} /> */}
-      {/* <ContactList
-        contacts={filteredContacts.length > 0 ? filteredContacts : contacts}
-      /> */}
+      <ContactList contacts={filteredContacts} />
     </div>
   );
 }
 
 export default App;
-// _________________________________________________variant 1 work good
+// _________________________________________________variant 1
 // const [filteredContacts, setFilteredContacts] = useState([]);
 // const handleSearchChange = (event) => {
 //   setSearchValue(event.target.value);
@@ -47,5 +45,10 @@ export default App;
 //   [searchValue, contacts]
 // );
 
-// const [filter, setFilter] = useState("");
-// <Filter value={filter} onFilter={setFilter} />;
+// _________________________________________________variant 1
+
+//  <SearchBox handleSearchChange={handleSearchChange} />
+
+//  <ContactList
+//         contacts={filteredContacts.length > 0 ? filteredContacts : contacts}
+//       />

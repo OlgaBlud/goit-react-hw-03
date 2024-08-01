@@ -1,4 +1,4 @@
-const SearchBox = (searchValue, handleSearchChange) => {
+const SearchBox = ({ searchValue, handleSearchChange }) => {
   return (
     <div>
       <input
@@ -9,6 +9,9 @@ const SearchBox = (searchValue, handleSearchChange) => {
     </div>
   );
 };
+
+export default SearchBox;
+
 // const SearchBox = ({ handleSearchChange }) => {
 //   return (
 //     <div>
@@ -16,5 +19,3 @@ const SearchBox = (searchValue, handleSearchChange) => {
 //     </div>
 //   );
 // };
-
-export default SearchBox;
