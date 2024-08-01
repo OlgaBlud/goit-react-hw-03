@@ -11,20 +11,35 @@ function App() {
     { id: "id-3", name: "Eden Clements", number: "645-17-79" },
     { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
   ]);
+
   const [searchValue, setSearchValue] = useState("");
+
   const filteredContacts = contacts.filter((contact) => {
     return contact.name.toLowerCase().includes(searchValue.toLowerCase());
   });
+  const addContact = (newContact) => {
+    setContacts((prevContactList) => {
+      return [...prevContactList, newContact];
+    });
+  };
+  const deleteContacts = (contactId) => {
+    setContacts((prevContactList) =>
+      prevContactList.filter((contact) => contact.id !== contactId)
+    );
+  };
   return (
     <div>
       <h1>Phonebook</h1>
       <p>{searchValue}</p>
-      <ContactForm />
+      <ContactForm addContact={addContact} />
       <SearchBox
         searchValue={searchValue}
         handleSearchChange={setSearchValue}
       />
-      <ContactList contacts={filteredContacts} />
+      <ContactList
+        contacts={filteredContacts}
+        deleteContacts={deleteContacts}
+      />
     </div>
   );
 }
@@ -45,10 +60,7 @@ export default App;
 //   [searchValue, contacts]
 // );
 
-// _________________________________________________variant 1
-
 //  <SearchBox handleSearchChange={handleSearchChange} />
-
 //  <ContactList
 //         contacts={filteredContacts.length > 0 ? filteredContacts : contacts}
 //       />

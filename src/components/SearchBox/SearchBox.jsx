@@ -11,7 +11,7 @@ const SearchBox = ({ searchValue, handleSearchChange }) => {
 };
 
 export default SearchBox;
-
+/* // _________________________________________________variant 1 */
 // const SearchBox = ({ handleSearchChange }) => {
 //   return (
 //     <div>

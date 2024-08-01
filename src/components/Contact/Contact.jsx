@@ -2,7 +2,7 @@ import { BsTelephoneFill } from "react-icons/bs";
 import { IoIosContact } from "react-icons/io";
 import css from "./Contact.module.css";
 
-const Contact = ({ name, phone }) => {
+const Contact = ({ name, phone, deleteContacts, id }) => {
   return (
     <li className={css.contactItem}>
       <div className={css.textWrap}>
@@ -15,7 +15,11 @@ const Contact = ({ name, phone }) => {
           <p className={css.contactPhone}>{phone}</p>
         </div>
       </div>
-      <button type="button" className={css.deleteContactBtn}>
+      <button
+        type="button"
+        className={css.deleteContactBtn}
+        onClick={() => deleteContacts(id)}
+      >
         Delete
       </button>
     </li>
