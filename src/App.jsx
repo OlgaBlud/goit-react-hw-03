@@ -7,12 +7,12 @@ import initialContacts from "./data/data.json";
 
 function App() {
   const [contacts, setContacts] = useState(() => {
-    // const contactsFromLSData = JSON.parse(
-    //   window.localStorage.getItem("contacts")
-    // );
-    // if (contactsFromLSData.contacts.length > 4) {
-    //   return contactsFromLSData.contacts;
-    // }
+    const contactsFromLSData = JSON.parse(
+      window.localStorage.getItem("contacts")
+    );
+    if (contactsFromLSData !== null && contactsFromLSData.contacts.length > 4) {
+      return contactsFromLSData.contacts;
+    }
     return initialContacts;
   });
 
