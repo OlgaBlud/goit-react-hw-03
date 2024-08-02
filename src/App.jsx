@@ -10,8 +10,6 @@ function App() {
     const contactsFromLSData = JSON.parse(
       window.localStorage.getItem("contacts")
     );
-
-    console.log(contactsFromLSData.contacts.length);
     if (contactsFromLSData.contacts.length > 4) {
       return contactsFromLSData.contacts;
     }
@@ -23,24 +21,27 @@ function App() {
   const filteredContacts = contacts.filter((contact) => {
     return contact.name.toLowerCase().includes(searchValue.toLowerCase());
   });
+
   const addContact = (newContact) => {
     setContacts((prevContactList) => {
       return [...prevContactList, newContact];
     });
   };
+
   const deleteContacts = (contactId) => {
     setContacts((prevContactList) =>
       prevContactList.filter((contact) => contact.id !== contactId)
     );
   };
+
   useEffect(() => {
     window.localStorage.setItem("contacts", JSON.stringify({ contacts }));
   }, [contacts]);
-  console.log(contacts);
+
   return (
-    <div>
+    <div className="phonebookWrap">
       <h1>Phonebook</h1>
-      <p>{searchValue}</p>
+
       <ContactForm addContact={addContact} />
       <SearchBox
         searchValue={searchValue}
@@ -55,7 +56,7 @@ function App() {
 }
 
 export default App;
-// _________________________________________________variant 1
+// _________________________________________________filter variant 1
 // const [filteredContacts, setFilteredContacts] = useState([]);
 // const handleSearchChange = (event) => {
 //   setSearchValue(event.target.value);
